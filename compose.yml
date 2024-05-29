@@ -1,0 +1,18 @@
+services:
+  mysql:
+    image: 'mysql:8'
+    container_name: mysql
+    restart: always
+    environment:
+      - 'MYSQL_ROOT_PASSWORD=verysecret'
+      - 'MYSQL_DATABASE=delivery_kata_db'
+      - 'MYSQL_USER=selim'
+      - 'MYSQL_PASSWORD=pwd'
+    ports:
+      - '3306:3306'
+  zipkin:
+    image: 'openzipkin/zipkin:3.4'
+    container_name: zipkin
+    restart: always
+    ports:
+      - '9411:9411'

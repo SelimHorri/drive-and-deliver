@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: delivery-kata
+  flyway:
+    baseline-on-migrate: true
+  datasource:
+    url: jdbc:mysql://localhost/delivery_kata_db
+    username: selim
+    password: pwd
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+  docker:
+    compose:
+      lifecycle-management: start_only
+  threads:
+    virtual:
+      enabled: true
