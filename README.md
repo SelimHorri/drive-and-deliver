@@ -43,13 +43,24 @@ They have no priority between them, you can implement the ones you are intereste
 
 #### REST API
 - Propose an HTTP REST API to interact with the services implemented in the MVP
+
+>> I wrote the **_POST /api/v1/customers/{customerId}/deliveries/book_** 
+
 - Implement HATEOAS principles in your REST API
 - Document the REST API
 - Secure the API
+
+>> All APIs are secured with basic authentication (httpBasic) except for /api/v1/home
+
 - Use a non-blocking solution
 
+>> In this project, I'm using **Virtual Threads** under the hood instead of CompletableFuture or any other Async libraries.
+(Big hug to project LOOM 🤗)
 #### Persistence
 - Propose a data persistence solution
+
+>> I am using Spring Data Jpa for persistence layer
+
 - Propose a cache solution
 
 #### Stream
@@ -62,5 +73,11 @@ They have no priority between them, you can implement the ones you are intereste
 
 ### Packaging
 - Create a container of your application
+
+>> With the power of BuildPacks, I containerized my app directly with **_./mvnw spring-boot:build-image_** to create highly optimized Docker image
+
 - Deploy your application in a pod
 - Create a native image of your application
+
+>> For native execution, I specified **native** profile to let Spring create native image by using:
+> _**./mvnw -Pnative native:compile**_
