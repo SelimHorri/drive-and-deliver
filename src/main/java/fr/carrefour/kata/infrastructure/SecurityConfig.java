@@ -1,4 +1,4 @@
-package fr.carrefour.kata.config;
+package fr.carrefour.kata.infrastructure;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

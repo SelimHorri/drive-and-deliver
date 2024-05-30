@@ -4,7 +4,7 @@ spring:
   flyway:
     baseline-on-migrate: true
   datasource:
-    url: jdbc:mysql://localhost/delivery_kata_db
+    url: jdbc:mysql://localhost:3306/delivery_kata_db
     username: selim
     password: pwd
   jpa:
@@ -13,6 +13,7 @@ spring:
       ddl-auto: validate
   docker:
     compose:
+      enabled: true # in case u wanna enable compose from being managed by Spring, set it to true ;)
       lifecycle-management: start_only
   threads:
     virtual:

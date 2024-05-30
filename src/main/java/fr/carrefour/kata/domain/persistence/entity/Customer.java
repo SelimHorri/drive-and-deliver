@@ -1,4 +1,4 @@
-package fr.carrefour.kata.model;
+package fr.carrefour.kata.domain.persistence.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

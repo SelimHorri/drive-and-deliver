@@ -1,4 +1,4 @@
-package fr.carrefour.kata.controller;
+package fr.carrefour.kata.presentation;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
