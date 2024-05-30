@@ -1,3 +1,6 @@
+app:
+  is-secured: true
+
 spring:
   application:
     name: delivery-kata
@@ -18,3 +21,16 @@ spring:
   threads:
     virtual:
       enabled: true
+  mvc:
+    problemdetails:
+      enabled: true
+
+logging:
+  level:
+    org:
+      springframework:
+        security: debug
+        web: debug
+    fr:
+      carrefour:
+        kata: debug

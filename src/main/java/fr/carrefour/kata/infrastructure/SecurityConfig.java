@@ -1,9 +1,11 @@
 package fr.carrefour.kata.infrastructure;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
@@ -15,13 +17,24 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 class SecurityConfig {
 	
+	@ConditionalOnProperty(prefix = "app", name = "is-secured", havingValue = "true")
 	@Bean
-	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+	SecurityFilterChain securedSecurityFilterChain(HttpSecurity http) throws Exception {
 		return http
+				.csrf(AbstractHttpConfigurer::disable)
 				.authorizeHttpRequests(auth -> auth
 						.requestMatchers(AntPathRequestMatcher.antMatcher("/")).permitAll() // home
 						.anyRequest().authenticated())
 				.httpBasic(Customizer.withDefaults())
+				.build();
+	}
+	
+	@ConditionalOnProperty(prefix = "app", name = "is-secured", havingValue = "false")
+	@Bean
+	SecurityFilterChain notSecuredSecurityFilterChain(HttpSecurity http) throws Exception {
+		return http
+				.csrf(AbstractHttpConfigurer::disable)
+				.authorizeHttpRequests(auth -> auth.anyRequest().permitAll())
 				.build();
 	}
 	

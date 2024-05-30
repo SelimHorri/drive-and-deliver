@@ -31,7 +31,7 @@ public class DeliveryMethod {
 	@Column(name = "end_date")
 	private LocalDateTime endDate;
 	
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name = "delivery_id")
 	private Delivery delivery;
 	
