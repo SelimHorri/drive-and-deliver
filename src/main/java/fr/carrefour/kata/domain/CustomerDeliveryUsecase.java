@@ -5,7 +5,7 @@ import fr.carrefour.kata.presentation.response.DeliveryResponse;
 
 public interface CustomerDeliveryUsecase {
 	
-	DeliveryResponse bookDelivery(DeliveryRequest deliveryRequest);
+	DeliveryResponse bookDelivery(Integer customerId, DeliveryRequest deliveryRequest);
 	
 }
 

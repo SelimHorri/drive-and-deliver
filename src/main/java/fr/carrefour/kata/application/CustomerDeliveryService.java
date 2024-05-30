@@ -6,6 +6,7 @@ import fr.carrefour.kata.domain.persistence.entity.DeliveryMethod;
 import fr.carrefour.kata.domain.persistence.repository.CustomerRepository;
 import fr.carrefour.kata.domain.persistence.repository.DeliveryMethodRepository;
 import fr.carrefour.kata.domain.persistence.repository.DeliveryRepository;
+import fr.carrefour.kata.infrastructure.exception.BusinessException;
 import fr.carrefour.kata.presentation.request.DeliveryRequest;
 import fr.carrefour.kata.presentation.response.DeliveryResponse;
 import lombok.RequiredArgsConstructor;
@@ -26,15 +27,16 @@ class CustomerDeliveryService implements CustomerDeliveryUsecase {
 	private final DeliveryMethodRepository deliveryMethodRepository;
 	
 	@Override
-	public DeliveryResponse bookDelivery(final DeliveryRequest deliveryRequest) {
+	public DeliveryResponse bookDelivery(final Integer customerId, final DeliveryRequest deliveryRequest) {
+		// We will assume that the chosen timeslot is valid..
 		
 		final var customer = this.customerRepository
-				.findById(deliveryRequest.customerId())
-				.orElseThrow(() -> new RuntimeException("Customer with %d is not recognized"
-						.formatted(deliveryRequest.customerId())));
+				.findById(customerId)
+				.orElseThrow(() -> BusinessException.ofBadRequest(
+						"Customer with %d is not recognized".formatted(customerId)));
 		
 		final var delivery = Delivery.builder()
-				.deliveryReference(deliveryReference())
+				.deliveryReference(generateDeliveryReference())
 				.customer(customer)
 				.build();
 		final var createdDelivery = this.deliveryRepository.save(delivery);
@@ -59,7 +61,7 @@ class CustomerDeliveryService implements CustomerDeliveryUsecase {
 	/**
 	 * TODO: Maybe extracted to a utility class
 	 */
-	private static String deliveryReference() {
+	private static String generateDeliveryReference() {
 		return "REF-" + UUID.randomUUID().toString();
 	}
 	

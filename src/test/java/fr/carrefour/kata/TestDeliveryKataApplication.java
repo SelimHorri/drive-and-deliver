@@ -5,7 +5,6 @@ import org.springframework.boot.devtools.restart.RestartScope;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
 import org.springframework.context.annotation.Bean;
-import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.containers.MySQLContainer;
 import org.testcontainers.utility.DockerImageName;
 
@@ -16,15 +15,17 @@ public class TestDeliveryKataApplication {
 	@ServiceConnection
 	@RestartScope
 	MySQLContainer<?> mysqlContainer() {
-		return new MySQLContainer<>(DockerImageName.parse("mysql:8.4"));
+		return new MySQLContainer<>(DockerImageName.parse("mysql:8.4.34"));
 	}
 	
+	/*
 	@Bean
 	@ServiceConnection(name = "openzipkin/zipkin")
 	@RestartScope
 	GenericContainer<?> zipkinContainer() {
-		return new GenericContainer<>(DockerImageName.parse("openzipkin/zipkin:3.4")).withExposedPorts(9411);
+		return new GenericContainer<>(DockerImageName.parse("openzipkin/zipkin:3.4.0")).withExposedPorts(9411);
 	}
+	*/
 	
 	public static void main(String[] args) {
 		SpringApplication.from(DeliveryKataApplication::main).with(TestDeliveryKataApplication.class).run(args);
