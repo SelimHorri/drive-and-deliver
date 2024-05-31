@@ -68,7 +68,7 @@ They have no priority between them, you can implement the ones you are intereste
 #### Persistence
 - Propose a data persistence solution
 
->> I am using Spring Data Jpa for persistence layer.
+>> I am using Spring Data Jpa for persistence layer, I used also Flyway to manage SQL migration scripts.
 
 - Propose a cache solution
 
