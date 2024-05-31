@@ -15,6 +15,8 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
+
 @Configuration
 @EnableWebSecurity
 class SecurityConfig {
@@ -25,9 +27,14 @@ class SecurityConfig {
 		return http
 				.csrf(AbstractHttpConfigurer::disable)
 				.authorizeHttpRequests(auth -> auth
-						.requestMatchers(AntPathRequestMatcher.antMatcher("/")).permitAll() // home
+						.requestMatchers(antMatcher("/")).permitAll() // home
+						.requestMatchers(
+								antMatcher("/actuator/**"),
+								antMatcher("/swagger-ui.html/**"))
+						.hasRole("ADMIN")
 						.anyRequest().authenticated())
 				.httpBasic(Customizer.withDefaults())
+				.formLogin(Customizer.withDefaults())
 				.build();
 	}
 	
@@ -50,7 +57,11 @@ class SecurityConfig {
 				.password("0000")
 				.roles("USER")
 				.build();
-		return new InMemoryUserDetailsManager(selim, aziz);
+		var amine = User.withUsername("amine")
+				.password("0000")
+				.roles("ADMIN")
+				.build();
+		return new InMemoryUserDetailsManager(selim, aziz, amine);
 	}
 	
 	@Bean

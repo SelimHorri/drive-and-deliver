@@ -7,7 +7,11 @@
 	},
 	"item": [
 		{
+<<<<<<< HEAD
 			"name": "http://localhost:8080/api/v1/customers/0/deliveries/book",
+=======
+			"name": "Delivery book",
+>>>>>>> develop
 			"request": {
 				"auth": {
 					"type": "basic",
@@ -53,6 +57,44 @@
 				}
 			},
 			"response": []
+<<<<<<< HEAD
+=======
+		},
+		{
+			"name": "Actuator Health",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "amine",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "0000",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/actuator/health",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"actuator",
+						"health"
+					]
+				}
+			},
+			"response": []
+>>>>>>> develop
 		}
 	]
 }

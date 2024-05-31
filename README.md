@@ -44,28 +44,41 @@ They have no priority between them, you can implement the ones you are intereste
 #### REST API
 - Propose an HTTP REST API to interact with the services implemented in the MVP
 
->> I wrote the **_POST /api/v1/customers/{customerId}/deliveries/book_** 
+>> I wrote `POST /api/v1/customers/{customerId}/deliveries/book` \
+>> Postman: [postman collection](drive-and-delivery.postman_collection.json)
 
 - Implement HATEOAS principles in your REST API
 - Document the REST API
 - Secure the API
 
->> All APIs are secured with basic authentication (httpBasic) except for /api/v1/home
+>> All APIs are secured with basic authentication (httpBasic) & form based Authn (formLogin) except for `/api/v1/home`
+>> In order to test APIs, There are three (in-memory) users:
+>> * `{"username": "selim", "passsword": "0000", "roles": ["USER"]}`
+>> * `{"username": "aziz", "passsword": "0000", "roles": ["USER"]}`
+>> * `{"username": "amine", "passsword": "0000", "roles": ["ADMIN"]}` \
+>> **Note**: Only `amine` has the right to access `/actuator/**` & `/swagger-ui.html/**`
 
 - Use a non-blocking solution
 
->> In this project, I'm using **Virtual Threads** under the hood instead of CompletableFuture or any other Async libraries.
-(Big hug to project LOOM 🤗)
+>> In this project, I'm using `Virtual Threads` under the hood instead of `CompletableFuture` or any other Async libraries.
+(Big hug to project **LOOM** 🤗)
 #### Persistence
 - Propose a data persistence solution
 
->> I am using Spring Data Jpa for persistence layer
+>> I am using Spring Data Jpa for persistence layer.
 
 - Propose a cache solution
 
+>> We can use Cache Abstraction from Spring along with Redis database instead of using in-memory cache with huge concurrent hashmaps.
+
 #### Stream
 - Propose a data streaming solution
+
+>> We may use Apache Kafka for data streaming
+
 - Propose a solution for consuming and/or producing events
+
+>> Indeed, it is possible to consume & produce events through Kafka Topics, the whole mechanism can be configured with Spring Kafka.
 
 ### CI/CD
 - Propose a CI/CD system for the project
@@ -74,10 +87,18 @@ They have no priority between them, you can implement the ones you are intereste
 ### Packaging
 - Create a container of your application
 
->> With the power of BuildPacks, I containerized my app directly with **_./mvnw spring-boot:build-image_** to create highly optimized Docker image
+>> With the power of BuildPacks, I containerized my app directly with `./mvnw spring-boot:build-image` to create highly optimized Docker image
 
 - Deploy your application in a pod
 - Create a native image of your application
 
->> For native execution, I specified **native** profile to let Spring create native image by using:
-> _**./mvnw -Pnative native:compile**_
+>>I'm using SDKMAN in my dev machine (you will notice [.sdkmanrc](.sdkmanrc) in project level).
+> So you can change easily your JDK from Eclipse Temurin OpenJDK `java=21.0.2-tem` to GraalVM OpenJDK `java=21.0.2-graalce`
+
+>> For native execution, I specified **native** profile to let Spring create native image by using: \
+> `./mvnw -Pnative native:compile`
+
+
+After AOT compilation, we can notice that startup time has been reduced probably 20% or more..
+
+![alt text](startup-time.png)

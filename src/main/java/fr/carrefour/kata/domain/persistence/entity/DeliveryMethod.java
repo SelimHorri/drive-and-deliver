@@ -1,6 +1,6 @@
 package fr.carrefour.kata.domain.persistence.entity;
 
-import fr.carrefour.kata.domain.persistence.DelivMethod;
+import fr.carrefour.kata.domain.model.DelivMethod;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

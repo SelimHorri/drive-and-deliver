@@ -1,4 +1,4 @@
-package fr.carrefour.kata.domain.persistence;
+package fr.carrefour.kata.domain.model;
 
 public enum DelivMethod {
 	

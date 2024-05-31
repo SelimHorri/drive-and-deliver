@@ -1,7 +1,7 @@
 package fr.carrefour.kata;
 
-import fr.carrefour.kata.constant.AppConstants;
-import fr.carrefour.kata.domain.persistence.DelivMethod;
+import fr.carrefour.kata.domain.model.constant.AppConstants;
+import fr.carrefour.kata.domain.model.DelivMethod;
 import fr.carrefour.kata.presentation.request.DeliveryRequest;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

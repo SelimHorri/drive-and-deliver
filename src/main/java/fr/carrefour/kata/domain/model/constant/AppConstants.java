@@ -1,4 +1,4 @@
-package fr.carrefour.kata.constant;
+package fr.carrefour.kata.domain.model.constant;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
