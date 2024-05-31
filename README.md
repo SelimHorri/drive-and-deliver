@@ -49,6 +49,9 @@ They have no priority between them, you can implement the ones you are intereste
 
 - Implement HATEOAS principles in your REST API
 - Document the REST API
+
+>> I used OpenAPI swagger to document API
+
 - Secure the API
 
 >> All APIs are secured with basic authentication (httpBasic) & form based Authn (formLogin) except for `/api/v1/home`
@@ -84,6 +87,8 @@ They have no priority between them, you can implement the ones you are intereste
 - Propose a CI/CD system for the project
 - Propose End-to-End tests for your application
 
+>> I wrote two tests using JUnit5, AssertJ & Testcontainers.
+
 ### Packaging
 - Create a container of your application
 
@@ -99,6 +104,6 @@ They have no priority between them, you can implement the ones you are intereste
 > `./mvnw -Pnative native:compile`
 
 
-After AOT compilation, we can notice that startup time has been reduced probably 20% or more..
+After AOT compilation, we can notice that startup time has been reduced probably 20% or more and definitely less memory consumption..
 
 ![alt text](startup-time.png)
