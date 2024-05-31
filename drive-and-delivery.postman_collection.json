@@ -1,0 +1,58 @@
+{
+	"info": {
+		"_postman_id": "159d909e-c1cf-4a27-ac72-a94228fe3e3f",
+		"name": "drive-and-delivery",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10960481"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/api/v1/customers/0/deliveries/book",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "0000",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "selim",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"startDate\": \"31-05-2024 18:30:00\",\n    \"endDate\": \"31-05-2024 20:00:00\",\n    \"delivMethod\": \"DELIVERY_ASAP\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/customers/2/deliveries/book",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"customers",
+						"2",
+						"deliveries",
+						"book"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

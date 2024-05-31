@@ -28,7 +28,7 @@ class CustomerDeliveryController {
 	
 	// TODO: Better to export to a controller advice
 	@ExceptionHandler
-	private <T extends BusinessException> ResponseEntity<ApiResponse<ProblemDetail>> handleBusinessException(T e) {
+	private <T extends BusinessException> ResponseEntity<ProblemDetail> handleBusinessException(T e) {
 		var problemDetail = ProblemDetail.forStatusAndDetail(e.getStatusCode(), e.getMessage());
 		return ResponseEntity
 				.of(problemDetail)
